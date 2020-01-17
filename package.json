@@ -18,17 +18,21 @@
   },
   "homepage": "https://github.com/deokgoo/nodejs-toy-exampleServer#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "chalk": "^3.0.0",
     "cors": "^2.8.5",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "morgan": "^1.9.1"
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "sequelize": "^5.21.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
     "@babel/node": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "sqlite3": "^4.1.1"
   }
 }

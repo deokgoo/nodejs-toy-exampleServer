@@ -5,7 +5,9 @@ let router = Router();
 
 // Middle Ware
 router.use((req, res, next)  => {
-    console.log('Receive /api');
+    // TODO : require Auth
+    const authFail = true;
+    if(authFail) throw "AuthFail";
     next();
 });
 
@@ -17,10 +19,6 @@ router.get('/find/:title/:apikey', (req, res) => {
 
 router.get('/rank/:apikey', (req, res) => {
     res.send(`rank : ${req.params.apikey}`);
-});
-
-router.get('/getapi', (req, res) => {
-    res.send("getApi");
 });
 
 export default router;
