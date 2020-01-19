@@ -1,13 +1,14 @@
 import jwt from 'jsonwebtoken';
 
 const privateKey = 'secret';
+const EXPIRED_SECOND = 60 * 60;
 
 export const generate = async (user_id, name, email) => {
   const token = jwt.sign({
-    exp: Math.floor(Date.now() / 1000) + (60 * 60),
     user_id,
     name,
-    email
+    email,
+    exp: Math.floor(Date.now() / 1000) + EXPIRED_SECOND
   }, privateKey, {algorithm: 'HS256'});
 
   return token;

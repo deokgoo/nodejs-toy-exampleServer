@@ -11,8 +11,8 @@ router.use(async (req, res, next) => {
   isVerified(token).then((decoded) => {
     req.userInfo = decoded;
     next();
-  }).catch(_ => {
-    res.status(401).send({error: 'Bearer error'});
+  }).catch(err => {
+    res.status(401).send({error: err.name});
   })
 });
 
