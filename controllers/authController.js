@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import { createUser, findUser } from '../models/UserModel';
 import crypto from 'crypto';
+import { generate } from '../service/jwtGenerator';
 
 let router = Router();
 
@@ -11,13 +12,12 @@ router.post('/login', async (req, res) => {
   let law_id = law_token.split(":")[0];
   let law_password = law_token.split(":")[1];
   let userData = await findUser(law_id);
-  console.log("========");
-  console.log(userData);
   let hashPW = cryptoPW(userData.salt, law_password);
 
   if (userData.pw === hashPW) {
     // TODO : JWT
-    res.send(`Auth Success : ${law_id}`)
+    let jwt = await generate(law_id, userData.name, userData.email);
+    res.send(jwt);
   } else {
     res.send("Auth Fail")
   }
