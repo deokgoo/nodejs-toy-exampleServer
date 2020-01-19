@@ -8,17 +8,17 @@ export const generate = async (user_id, name, email) => {
     user_id,
     name,
     email
-  }, privateKey, { algorithm: 'HS256'});
+  }, privateKey, {algorithm: 'HS256'});
 
   return token;
 };
 
 export const isVerified = (token) => {
-  return new Promise((resolve ,reject) => {
-    jwt.verify(token, privateKey, { algorithms: ['HS256'] }, (err, decoded) => {
-      if(decoded!==undefined) {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, privateKey, {algorithms: ['HS256']}, (err, decoded) => {
+      if (decoded !== undefined) {
         resolve(decoded);
-      }else {
+      } else {
         reject(err);
       }
     });

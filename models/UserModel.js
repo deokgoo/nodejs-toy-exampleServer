@@ -1,47 +1,47 @@
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: './db-dev.sqlite',
-    operatorsAliases: Sequelize.Op,
-    logging: console.log
+  dialect: 'sqlite',
+  storage: './db-dev.sqlite',
+  operatorsAliases: Sequelize.Op,
+  logging: console.log
 });
 
 const User = sequelize.define('auths', {
-    id: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        primaryKey: true,
-    },
-    pw: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    salt: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    }
+  id: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    primaryKey: true,
+  },
+  pw: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  salt: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  }
 }, {
-    sequelize,
-    modelName: 'auths'
+  sequelize,
+  modelName: 'auths'
 });
 
-User.sync({ force: true });
+User.sync({force: true});
 
 export const createUser = (data) => {
-    return User.create(data);
+  return User.create(data);
 };
 
 export const findUser = (id) => {
-    return User.findOne({
-        where: { id }
-    });
+  return User.findOne({
+    where: {id}
+  });
 };
