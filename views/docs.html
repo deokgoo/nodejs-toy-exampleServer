@@ -23,15 +23,15 @@
     <h3>&nbsp; &nbsp; --data-urlencode 'email={email}' </h3>
     </h3>
     <h2>User Login</h2>
-    <h3>&nbsp; : curl -u {id}:{password} --request POST https://movie-nodejs.herokuapp.com/auth/login</h3>
+    <h3>&nbsp; : curl -s -u {id}:{password} --request POST https://movie-nodejs.herokuapp.com/auth/login</h3>
     <h3>&nbsp; &nbsp; - return bearer token</h3>
     <br>
     <hr>
     <h2>SearchMovie (need Bearer token)</h2>
-    <h3>&nbsp;&nbsp; : curl https://movie-nodejs.herokuapp.com/api/search/{title} -H 'Authorization: Bearer {token}'</h3>
+    <h3>&nbsp;&nbsp; : curl -s https://movie-nodejs.herokuapp.com/api/search/{title} -H 'Authorization: Bearer {token}'</h3>
     <br>
     <hr>
     <h2>Ranking (need Bearer token)</h2>
-    <h3>&nbsp;&nbsp; : curl https://movie-nodejs.herokuapp.com/api/rank -H 'Authorization: Bearer {token}'</h3>
+    <h3>&nbsp;&nbsp; : curl -s https://movie-nodejs.herokuapp.com/api/rank -H 'Authorization: Bearer {token}'</h3>
   </body>
 </html>
