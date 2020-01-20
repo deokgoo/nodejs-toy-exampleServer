@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const privateKey = 'secret';
+const privateKey = 'private_secret_key';
 const EXPIRED_SECOND = 60 * 60;
 
 export const generate = async (user_id, name, email) => {

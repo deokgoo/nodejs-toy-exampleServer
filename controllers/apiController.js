@@ -1,12 +1,12 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import chalk from 'chalk';
-import {isVerified} from '../service/jwtGenerator';
+import { isVerified } from '../service/jwtGenerator';
+import { findMovieByTitle, findRanking } from '../service/movieService';
 
 let router = Router();
 
-// Middle Ware
 router.use(async (req, res, next) => {
-  const {authorization} = req.headers;
+  const { authorization } = req.headers;
   let token = authorization.split(" ")[1];
   isVerified(token).then((decoded) => {
     req.userInfo = decoded;
@@ -16,15 +16,21 @@ router.use(async (req, res, next) => {
   })
 });
 
-router.get('/find/:title/:apikey', (req, res) => {
-  const {title, apikey} = req.params;
-  console.log(chalk.blue(`receive : ${title}, ${apikey}`));
-  res.send("find");
+router.get('/search/:title', async (req, res) => {
+  const { userInfo } = req;
+  const { title } = req.params;
+  let movieData = await findMovieByTitle(title);
+
+  console.log(chalk.blue(`${userInfo.name} : search api access`));
+  res.send(movieData.data);
 });
 
 router.get('/rank', async (req, res) => {
-  const {userInfo} = req;
-  res.send(`rank : ${userInfo.name}, ${userInfo.email}, ${userInfo.user_id}`);
+  const { userInfo } = req;
+  let movieData = await findRanking();
+
+  console.log(chalk.blue(`${userInfo.name} : rank api access`));
+  res.send(movieData.data);
 });
 
 export default router;
