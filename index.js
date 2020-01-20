@@ -8,7 +8,7 @@ import apiController from './controllers/apiController';
 import pageController from './controllers/pageController';
 import authController from './controllers/authController';
 
-const PORT = 4000;
+const PORT = 80;
 
 const app = express();
 
@@ -25,4 +25,4 @@ app.use('/', pageController);
 app.use('/api', apiController);
 app.use('/auth', authController);
 
-app.listen(PORT, () => console.log(chalk.whiteBright.bgBlue(`Example app listening on port ${PORT}!`)));
+app.listen(process.env.PORT || PORT, () => console.log(chalk.whiteBright.bgBlue(`Example app listening on port ${PORT}!`)));
