@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import { createUser, findUser } from '../models/UserModel';
 import crypto from 'crypto';
 import { generate } from '../service/jwtGenerator';
@@ -15,7 +15,6 @@ router.post('/login', async (req, res) => {
   let hashPW = cryptoPW(userData.salt, law_password);
 
   if (userData.pw === hashPW) {
-    // TODO : JWT
     let jwt = await generate(law_id, userData.name, userData.email);
     res.send(jwt);
   } else {

@@ -40,6 +40,15 @@ export const createUser = (data) => {
   return User.create(data);
 };
 
+const salt = "custom_salt";
+createUser({
+  id: 'deok',
+  pw: cryptoPW(salt, 'deok'),
+  name: 'admin',
+  email: 'testEmail',
+  salt
+});
+
 export const findUser = (id) => {
   return User.findOne({
     where: {id}
